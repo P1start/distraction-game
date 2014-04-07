@@ -2,17 +2,17 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    background-color: #333;
+    background-color: #191919;
 }
 
 canvas {
     display: block;
     background-color: #fff;
-    margin: -200px -400px;
-    width: 800px;
-    height: 400px;
-    position: absolute;
+    /*margin: -50% -50%;*/
+    width: 100%;
+    height: 100%;
+/*    position: absolute;
     top: 50%;
     left: 50%;
-    box-shadow: 0 0 25px #222;
+    box-shadow: 0 0 15px rgba(127, 127, 127, 0.7) inset;*/
 }

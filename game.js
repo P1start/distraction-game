@@ -59,16 +59,6 @@ var getKey = function(key) {
     return keys[key] || false;
 };
 
-var introText = {
-    x: -100,
-    y: 200
-}
-
-var titleText = {
-    x: 325,
-    y: -10
-}
-
 var shapes = [];
 
 var words = [];
@@ -189,7 +179,7 @@ var game = {
         ctx.font = "12px Arial";
         ctx.clearRect(0, 0, cvs.width, cvs.height);
         ctx.fillStyle = "#000";
-        ctx.fillText("Bad Game Productions presents", introText.x*100 + 300, introText.y);
+        ctx.fillText("Bad Game Productions presents", introText.x*100 + cvs.width/2 - 100, introText.y);
     },
     titleSeq: function() {
         ctx.clearRect(0, 0, cvs.width, cvs.height);
@@ -200,12 +190,14 @@ var game = {
             game.state = 2;
         } else {
             ctx.font = "10px Arial";
-            ctx.fillText("press enter to start", 340, titleText.y * 100 + 220);
+            ctx.fillText("press enter to start", cvs.width/2 - 60, titleText.y * 100 + cvs.height/2 + 20);
         }
         ctx.font = "12px Arial";
-        ctx.fillText("[insert bad game here]", titleText.x, titleText.y * 100 + 200);
+        ctx.fillText("[insert bad game here]", titleText.x, titleText.y * 100 + cvs.height/2);
     },
     main: function() {
+        cvs.height = window.innerHeight;
+        cvs.width = window.innerWidth;
         for (var i = 0; i < 1; i++) {
         if (introText.x < 100) {
             game.startSeq();
@@ -280,13 +272,13 @@ var game = {
                     if (!frame) red = null;
                 }
 
-                // Draw points
+                // Draw score
                 ctx.font = "20px Arial";
                 ctx.fillStyle = "#333";
                 if (inverse) {
                     ctx.fillStyle = "#ccc";
                 }
-                ctx.fillText(timer, 5, 20);
+                ctx.fillText(timer, 10, 25);
 
                 if (count > 0) count -= 1;
                 if (getKey(SPACE) && space) {
@@ -429,6 +421,19 @@ var game = {
     start: function () {
         window.cvs = document.getElementById("game");
         window.ctx = cvs.getContext("2d");
+        cvs.height = window.innerHeight;
+        cvs.width = window.innerWidth;
+        
+        window.introText = {
+            x: -100,
+            y: cvs.height/2
+        }
+
+        window.titleText = {
+            x: cvs.width/2 - 75,
+            y: -10
+        }
+
         document.body.onkeydown = function(e) {
             keys[e.keyCode] = true;
         };
